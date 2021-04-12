@@ -39,16 +39,24 @@ namespace A873263.Actividad02
                 {
                     case opcionAlta:
                         elCodigo = Validaciones.PedirInt("Ingrese el código del producto");
-                        elNombre = Validaciones.PedirStrNoVac("Ingrese el nombre del producto");
-                        elStock = Validaciones.PedirInt("Ingrese el stock inicial de dicho producto");
-                        if (elStock < 0)
+                        string verificarExistente = VerificarExistencia(productos, elCodigo);
+                        if (verificarExistente != "")
                         {
-                            Console.WriteLine("No se puede cargar stock negativo");
+                            Console.WriteLine("Ya existe un producto con ese código");
                         }
                         else
                         {
-                            productos.Add(new Producto(elCodigo, elNombre, elStock));
-                            Console.WriteLine("El producto fue agregado con éxito");
+                            elNombre = Validaciones.PedirStrNoVac("Ingrese el nombre del producto");
+                            elStock = Validaciones.PedirInt("Ingrese el stock inicial de dicho producto");
+                            if (elStock < 0)
+                            {
+                                Console.WriteLine("No se puede cargar stock negativo");
+                            }
+                            else
+                            {
+                                productos.Add(new Producto(elCodigo, elNombre, elStock));
+                                Console.WriteLine("El producto fue agregado con éxito");
+                            }
                         }
                         break;
 
@@ -157,6 +165,29 @@ namespace A873263.Actividad02
                         return prod.Codigo == elCodigo;
                     }
                 );
+        }
+
+        public string VerificarExistencia(List<Producto> elProducto, int elCodigo)
+        {
+            int posicion = 0;
+            bool encontrado = false;
+            string existe = "";
+            while (posicion < elProducto.Count && !encontrado)
+            {
+                if (elProducto[posicion].Codigo == elCodigo)
+                {
+                    encontrado = true;
+                }
+                else
+                {
+                    posicion++;
+                }
+                if (encontrado)
+                {
+                    existe = "SI";
+                }
+            }
+            return existe;
         }
 
     }
