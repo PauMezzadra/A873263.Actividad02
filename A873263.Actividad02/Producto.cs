@@ -10,7 +10,7 @@ namespace A873263.Actividad02
     {
         public int Codigo { get; private set; }
         public string NombreProducto { get; private set; }
-        public int StockInicial { get; private set; }
+        public int StockInicial { get; set; }
 
         public Producto(int elCodigo, string elNombre, int elStock)
         {

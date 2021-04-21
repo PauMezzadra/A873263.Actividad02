@@ -70,7 +70,6 @@ namespace A873263.Actividad02
                         }
                         else
                         {
-                            elNombre = productoEncontrado.NombreProducto;
                             cantidadBajaOAlta = Validaciones.PedirInt("Ingrese la cantidad de productos vendidos");
                             if (cantidadBajaOAlta < 0)
                             {
@@ -85,8 +84,7 @@ namespace A873263.Actividad02
                                 }
                                 else
                                 {
-                                    productos.Remove(productoEncontrado);
-                                    productos.Add(new Producto(codigoBuscar, elNombre, nuevoStock));
+                                    productoEncontrado.StockInicial = nuevoStock;
                                     Console.WriteLine("El stock ha sido actualizado");
                                     if (nuevoStock == 0)
                                     {
@@ -107,7 +105,6 @@ namespace A873263.Actividad02
                         }
                         else
                         {
-                            elNombre = productoEncontrado.NombreProducto;
                             cantidadBajaOAlta = Validaciones.PedirInt("Ingrese la cantidad de productos recibidos");
                             if (cantidadBajaOAlta < 0)
                             {
@@ -116,8 +113,7 @@ namespace A873263.Actividad02
                             else
                             {
                                 nuevoStock = productoEncontrado.StockInicial + cantidadBajaOAlta;
-                                productos.Remove(productoEncontrado);
-                                productos.Add(new Producto(codigoBuscar, elNombre, nuevoStock));
+                                productoEncontrado.StockInicial = nuevoStock;
                                 Console.WriteLine("El stock ha sido actualizado");
                             }
                         }
